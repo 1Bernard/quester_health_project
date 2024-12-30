@@ -61,4 +61,11 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     //Preferences DataStore
     implementation(libs.androidx.datastore.preferences)
+    // Koin for Android
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+    //Lifecycle
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
 }

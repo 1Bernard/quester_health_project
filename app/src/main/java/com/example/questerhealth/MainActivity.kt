@@ -2,6 +2,7 @@ package com.example.questerhealth
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.OvershootInterpolator
 import android.widget.Toast
@@ -16,14 +17,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.lifecycleScope
+import com.example.questerhealth.core.preferences.domain.usecases.AppEntryUseCases
 import com.example.questerhealth.features.onboard.presentation.OnboardingScreen
 import com.example.questerhealth.ui.theme.QuesterHealthTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
+    private val appEntryUseCases: AppEntryUseCases by inject()
+
     private var showSplashScreen = true
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen().apply {
@@ -65,7 +71,14 @@ class MainActivity : ComponentActivity() {
             delay(3000)
             showSplashScreen = false
         }
+
+        lifecycleScope.launch {
+            appEntryUseCases.readAppEntry().collect {
+                Log.d("TEST", "onCreate: $it")
+            }
+        }
     }
+
 }
 
 @Composable
