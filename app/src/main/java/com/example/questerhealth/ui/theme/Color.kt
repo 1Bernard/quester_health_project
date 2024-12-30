@@ -2,7 +2,6 @@ package com.example.questerhealth.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-
 val primaryLight = Color(0xFF2E628C)
 val onPrimaryLight = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFFCEE5FF)
@@ -23,7 +22,7 @@ val backgroundLight = Color(0xFFF7F9FF)
 val onBackgroundLight = Color(0xFF181C20)
 val surfaceLight = Color(0xFFF5FAFB)
 val onSurfaceLight = Color(0xFF171D1E)
-val surfaceVariantLight = Color(0xFFDEE3EB)
+val surfaceVariantLight = Color(0xFFE1E1E1)
 val onSurfaceVariantLight = Color(0xFF42474E)
 val outlineLight = Color(0xFF72777F)
 val outlineVariantLight = Color(0xFFC2C7CF)
