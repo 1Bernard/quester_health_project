@@ -5,10 +5,17 @@ import com.example.questerhealth.core.preferences.domain.manager.LocalUserManage
 import com.example.questerhealth.core.preferences.domain.usecases.AppEntryUseCases
 import com.example.questerhealth.core.preferences.domain.usecases.ReadAppEntry
 import com.example.questerhealth.core.preferences.domain.usecases.SaveAppEntry
+import com.example.questerhealth.features.onboard.presentation.OnBoardingViewModel
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
     single<LocalUserManager> { LocalUserManagerImpl(androidContext()) }
     single { AppEntryUseCases(readAppEntry = ReadAppEntry(get()), saveAppEntry = SaveAppEntry(get())) }
+
+    viewModel {
+        OnBoardingViewModel(get())
+    }
+
 }

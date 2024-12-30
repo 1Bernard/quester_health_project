@@ -26,7 +26,9 @@ import com.example.questerhealth.features.onboard.presentation.components.Onboar
 import kotlinx.coroutines.launch
 
 @Composable
-fun OnboardingScreen(onFinished: () -> Unit) {
+fun OnboardingScreen(
+    event: (OnboardingEvent) -> Unit,
+) {
     val pages = listOf(
         OnboardingModel.Firstpage,
         OnboardingModel.Secondpage,
@@ -91,7 +93,7 @@ fun OnboardingScreen(onFinished: () -> Unit) {
                             if (pagerState.currentPage < pages.size - 1) {
                                 pagerState.animateScrollToPage(pagerState.currentPage + 1)
                             } else {
-                                onFinished() // Navigate to Auth Logic
+                               event(OnboardingEvent.SaveAppEntry)
                             }
                         }
                     }
@@ -116,11 +118,4 @@ fun OnboardingScreen(onFinished: () -> Unit) {
         }
     )
 
-
-}
-
-@Preview(showBackground = true)
-@Composable
-fun OnboardingScreenPreview() {
-    OnboardingScreen(onFinished = {})
 }

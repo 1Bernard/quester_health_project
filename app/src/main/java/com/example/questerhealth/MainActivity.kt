@@ -19,6 +19,7 @@ import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import com.example.questerhealth.core.preferences.domain.usecases.AppEntryUseCases
+import com.example.questerhealth.features.onboard.presentation.OnBoardingViewModel
 import com.example.questerhealth.features.onboard.presentation.OnboardingScreen
 import com.example.questerhealth.ui.theme.QuesterHealthTheme
 import kotlinx.coroutines.CoroutineScope
@@ -26,10 +27,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import org.koin.androidx.compose.koinViewModel
+import org.koin.java.KoinJavaComponent.inject
 
 class MainActivity : ComponentActivity() {
-    private val appEntryUseCases: AppEntryUseCases by inject()
-
+    private val useCases: AppEntryUseCases by inject()
     private var showSplashScreen = true
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen().apply {
@@ -73,20 +75,21 @@ class MainActivity : ComponentActivity() {
         }
 
         lifecycleScope.launch {
-            appEntryUseCases.readAppEntry().collect {
+            useCases.readAppEntry().collect {
                 Log.d("TEST", "onCreate: $it")
             }
         }
+
     }
 
 }
 
 @Composable
 private fun ShowOnboardingScreen() {
-    val context = LocalContext.current
     Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)) {
-        OnboardingScreen {
-            Toast.makeText(context, "Finished", Toast.LENGTH_SHORT).show()
-        }
+        val viewModel: OnBoardingViewModel = koinViewModel()
+        OnboardingScreen(
+            event = viewModel::onEvent
+        )
     }
 }
