@@ -7,8 +7,8 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.questerhealth.core.preferences.domain.manager.LocalUserManager
-import com.example.questerhealth.features.onboard.util.Constants
-import com.example.questerhealth.features.onboard.util.Constants.USER_SETTINGS
+import com.example.questerhealth.core.util.Constants
+import com.example.questerhealth.core.util.Constants.USER_SETTINGS
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
