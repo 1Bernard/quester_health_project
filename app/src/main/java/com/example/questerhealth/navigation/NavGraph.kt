@@ -78,7 +78,7 @@ fun NavGraph(
 
             ) {
 
-                MultiStepForm()
+                Text(text = "Auth", textAlign = TextAlign.Center)
             }
 
         }

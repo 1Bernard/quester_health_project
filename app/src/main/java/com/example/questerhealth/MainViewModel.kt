@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.questerhealth.core.preferences.domain.usecases.AppEntryUseCases
 import com.example.questerhealth.navigation.Route
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -27,6 +28,7 @@ class MainViewModel(
                 } else {
                     Route.OnBoarding
                 }
+                delay(1000)
                 splashCondition = false
             }
         }

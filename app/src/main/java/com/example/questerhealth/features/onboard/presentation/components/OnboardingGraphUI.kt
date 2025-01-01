@@ -1,6 +1,7 @@
 package com.example.questerhealth.features.onboard.presentation.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,6 +22,9 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun OnboardingGraphUI(onboardingModel: OnboardingModel) {
+    val isDarkTheme = isSystemInDarkTheme()
+    val logoRes = if (isDarkTheme) onboardingModel.darkThemeLogo else onboardingModel.logo
+
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -30,7 +34,7 @@ fun OnboardingGraphUI(onboardingModel: OnboardingModel) {
         Spacer(modifier = Modifier.height(16.dp))
         // Logo at the top
         Image(
-            painter = painterResource(id = onboardingModel.logo),
+            painter = painterResource(id = logoRes),
             contentDescription = null,
             modifier = Modifier
                 .size(100.dp),

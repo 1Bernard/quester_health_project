@@ -5,6 +5,7 @@ import com.example.questerhealth.R
 
 sealed class OnboardingModel(
     @DrawableRes val logo: Int = R.drawable.ic_logo,
+    @DrawableRes val darkThemeLogo: Int = R.drawable.ic_logo_dark,
     @DrawableRes val image: Int,
     val title: String,
     val desc: String
