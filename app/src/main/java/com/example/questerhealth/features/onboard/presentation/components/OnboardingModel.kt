@@ -1,4 +1,4 @@
-package com.example.questerhealth.features.onboard.presentation
+package com.example.questerhealth.features.onboard.presentation.components
 
 import androidx.annotation.DrawableRes
 import com.example.questerhealth.R

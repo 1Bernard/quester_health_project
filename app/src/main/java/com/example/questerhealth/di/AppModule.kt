@@ -1,5 +1,6 @@
 package com.example.questerhealth.di
 
+import com.example.questerhealth.MainViewModel
 import com.example.questerhealth.core.preferences.data.manager.LocalUserManagerImpl
 import com.example.questerhealth.core.preferences.domain.manager.LocalUserManager
 import com.example.questerhealth.core.preferences.domain.usecases.AppEntryUseCases
@@ -16,6 +17,9 @@ val appModule = module {
 
     viewModel {
         OnBoardingViewModel(get())
+    }
+    viewModel {
+        MainViewModel(get()) // Ensure MainViewModel is available for injection
     }
 
 }
