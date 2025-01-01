@@ -15,6 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.questerhealth.core.presentation.components.MultiStepForm
 import com.example.questerhealth.features.onboard.presentation.OnBoardingViewModel
 import com.example.questerhealth.features.onboard.presentation.OnboardingScreen
 import org.koin.androidx.compose.koinViewModel
@@ -74,17 +75,10 @@ fun NavGraph(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                ,
-                contentAlignment = Alignment.Center
 
             ) {
 
-                Text(
-                    modifier = Modifier
-                        .padding(),
-                    textAlign = TextAlign.Center,
-                    text = "Auth"
-                )
+                MultiStepForm()
             }
 
         }
