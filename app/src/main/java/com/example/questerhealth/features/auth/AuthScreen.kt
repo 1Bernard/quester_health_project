@@ -3,6 +3,7 @@ package com.example.questerhealth.features.auth
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,8 +11,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -36,6 +39,10 @@ import com.example.questerhealth.navigation.Route
 
 @Composable
 fun AuthScreen(navController: NavController) {
+    val isDarkTheme = isSystemInDarkTheme()
+    val logoRes =
+        if (isDarkTheme) painterResource(id = R.drawable.ic_logo_dark) else painterResource(id = R.drawable.ic_logo)
+
     val text = stringResource(id = R.string.already_have_account)
     val splitText = text.split("Login")
     Box(
@@ -52,11 +59,13 @@ fun AuthScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = R.drawable.auth_logo),
+                painter = logoRes,
                 contentDescription = "Logo",
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
-                    .size(200.dp)
+                    .width(500.dp)
+                    .height(300.dp)
+
             )
 
             Button(
@@ -74,7 +83,7 @@ fun AuthScreen(navController: NavController) {
                 Text(
                     text = stringResource(id = R.string.get_started),
                     style = MaterialTheme.typography.bodyMedium,
-                    fontSize  = MaterialTheme.typography.bodyMedium.fontSize
+                    fontSize = MaterialTheme.typography.bodyMedium.fontSize
                 )
             }
 
