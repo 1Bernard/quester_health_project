@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">QuesterHealth</string>
+    <string name="get_started">Get started</string>
+    <string name="already_have_account">Already have an account? Login</string>
+    <string name="or">or</string>
+    <string name="continue_with">Continue with</string>
 </resources>

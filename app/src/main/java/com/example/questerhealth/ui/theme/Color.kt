@@ -2,7 +2,7 @@ package com.example.questerhealth.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val primaryLight = Color(0xFF2E628C)
+val primaryLight = Color(0xFF0288d1)
 val onPrimaryLight = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFFCEE5FF)
 val onPrimaryContainerLight = Color(0xFF001D32)

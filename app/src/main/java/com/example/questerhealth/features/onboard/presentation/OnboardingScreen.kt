@@ -87,7 +87,7 @@ fun OnboardingScreen(
                     ButtonUI(
                         text = buttonState.value[1],
                         backgroundColor = MaterialTheme.colorScheme.primary,
-                        textColor = MaterialTheme.colorScheme.background
+                        textColor = MaterialTheme.colorScheme.onPrimary
                     ) {
                         scope.launch {
                             if (pagerState.currentPage < pages.size - 1) {

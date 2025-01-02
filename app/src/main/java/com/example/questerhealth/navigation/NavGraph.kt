@@ -16,6 +16,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.questerhealth.core.presentation.components.MultiStepForm
+import com.example.questerhealth.features.auth.AuthScreen
+import com.example.questerhealth.features.auth.signup.SignUpScreen
 import com.example.questerhealth.features.onboard.presentation.OnBoardingViewModel
 import com.example.questerhealth.features.onboard.presentation.OnboardingScreen
 import org.koin.androidx.compose.koinViewModel
@@ -57,30 +59,17 @@ fun NavGraph(
     ) {
 
         composable<Route.OnBoarding> {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                ,
-                contentAlignment = Alignment.Center
-
-            ) {
-
-                val viewModel: OnBoardingViewModel = koinViewModel()
-                OnboardingScreen(
-                    event = viewModel::onEvent
-                )
-            }
+            val viewModel: OnBoardingViewModel = koinViewModel()
+            OnboardingScreen(
+                event = viewModel::onEvent
+            )
         }
         composable<Route.Auth> {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
+            AuthScreen(navController = navController)
+        }
 
-            ) {
-
-                Text(text = "Auth", textAlign = TextAlign.Center)
-            }
-
+        composable<Route.SignUp> {
+            SignUpScreen(navController = navController)
         }
 
     }
