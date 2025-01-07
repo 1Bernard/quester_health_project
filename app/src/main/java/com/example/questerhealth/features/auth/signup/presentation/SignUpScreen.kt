@@ -29,6 +29,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.questerhealth.R
 import com.example.questerhealth.core.presentation.components.AppTextField
+import com.example.questerhealth.core.presentation.countrycodepicker.CountryCodePickerTextField
+import com.example.questerhealth.core.presentation.countrycodepicker.CountryCodeView
+import com.example.questerhealth.core.presentation.countrycodepicker.ShowCountryCodePickerTextField
 
 @Composable
 fun SignUpScreen(navController: NavController) {
@@ -37,7 +40,6 @@ fun SignUpScreen(navController: NavController) {
         if (isDarkTheme) painterResource(id = R.drawable.ic_logo_dark) else painterResource(id = R.drawable.ic_logo)
 
     var textFieldName by remember { mutableStateOf("") }
-    var textFieldPhone by remember { mutableStateOf("") }
     var textFieldPassword by remember { mutableStateOf("") }
     var textFieldConfirmPassword by remember { mutableStateOf("") }
 
@@ -92,15 +94,7 @@ fun SignUpScreen(navController: NavController) {
                 modifier = Modifier.fillMaxWidth()
             )
 
-            AppTextField(
-                value = textFieldPhone,
-                onValueChange = {
-                    textFieldPhone = it
-                },
-                labelText = "Phone Number",
-                isNumeric = true,
-                modifier = Modifier.fillMaxWidth()
-            )
+            ShowCountryCodePickerTextField()
 
             AppTextField(
                 value = textFieldPassword,
@@ -120,6 +114,8 @@ fun SignUpScreen(navController: NavController) {
                 isPassword = true,
                 modifier = Modifier.fillMaxWidth()
             )
+
+
 
 
         }

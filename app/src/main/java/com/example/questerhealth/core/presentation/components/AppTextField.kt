@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.InputTransformation.Companion.keyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -45,6 +46,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.questerhealth.R
+import com.example.questerhealth.core.presentation.countrycodepicker.CCPTransformer
+import com.example.questerhealth.core.presentation.countrycodepicker.CountryCodePicker
 
 @Composable
 fun AppTextField(
@@ -132,7 +135,9 @@ fun AppTextField(
                 {
                     IconButton(onClick = { passwordVisible.value = !passwordVisible.value }) {
                         Image(
-                            painter = if (passwordVisible.value) painterResource(id = R.drawable.ic_eye) else painterResource(id = R.drawable.ic_eye),
+                            painter = if (passwordVisible.value) painterResource(id = R.drawable.ic_eye) else painterResource(
+                                id = R.drawable.ic_eye
+                            ),
                             contentDescription = if (passwordVisible.value) "Hide password" else "Show password"
                         )
                     }
