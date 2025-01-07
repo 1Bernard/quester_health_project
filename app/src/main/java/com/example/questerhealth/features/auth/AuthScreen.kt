@@ -63,7 +63,7 @@ fun AuthScreen(navController: NavController) {
                 contentDescription = "Logo",
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
-                    .width(500.dp)
+                    .width(700.dp)
                     .height(300.dp)
 
             )
