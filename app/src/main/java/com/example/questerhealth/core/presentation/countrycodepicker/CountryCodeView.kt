@@ -155,7 +155,7 @@ fun ShowCountryCodePickerTextField() {
     CountryCodePickerTextField(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp),
+            .padding(top = 8.dp),
         enabled = true,
         textStyle = MaterialTheme.typography.bodyMedium,
         trailingIcon = {
@@ -164,11 +164,6 @@ fun ShowCountryCodePickerTextField() {
                     imageVector = Icons.Default.Clear, contentDescription = "Clear"
                 )
             }
-        },
-        label = {
-            Text(
-                text = "Phone Number", style = MaterialTheme.typography.bodyMedium
-            )
         },
         showError = true,
         shape = RoundedCornerShape(10.dp),

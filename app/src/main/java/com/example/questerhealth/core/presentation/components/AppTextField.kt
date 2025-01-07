@@ -68,7 +68,8 @@ fun AppTextField(
     shape: Shape = RoundedCornerShape(10.dp),
     colors: TextFieldColors = OutlinedTextFieldDefaults.colors(
         focusedBorderColor = MaterialTheme.colorScheme.primary,
-        unfocusedBorderColor = Color.LightGray.copy(alpha = 0.4f),
+//        unfocusedBorderColor = Color.LightGray.copy(alpha = 0.4f),
+        unfocusedBorderColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.2f),
         errorBorderColor = MaterialTheme.colorScheme.error
     )
 ) {
@@ -99,13 +100,13 @@ fun AppTextField(
         Text(
             text = labelText,
             style = textStyle.copy(
-                fontSize = if (isFocused.value) 12.sp else 16.sp,
+                fontSize = if (isFocused.value) 12.sp else 14.sp,
                 color = if (isError) MaterialTheme.colorScheme.error else Color.Gray
             ),
             modifier = Modifier
                 .padding(start = 16.dp, end = 16.dp)
                 .offset(
-                    y = if (isFocused.value) (14).dp else (34).dp // Adjust for the label staying within bounds
+                    y = if (isFocused.value) (13).dp else (34).dp // Adjust for the label staying within bounds
                 )
                 .background(MaterialTheme.colorScheme.background) // Prevent overlap
                 .animateContentSize() // Smooth animation
