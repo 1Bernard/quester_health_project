@@ -5,8 +5,8 @@ import androidx.compose.ui.graphics.Color
 data class PickerCustomization(
     var itemPadding: Int = 10,
     var dividerColor: Color = Color.LightGray,
-    var headerTitle: String = "Select Country",
-    var searchHint: String = "Search Country",
+    var headerTitle: String = "Select your country",
+    var searchHint: String = "Search your country",
     var showSearchClearIcon: Boolean = true,
     var showCountryCode: Boolean = true,
     var showFlag: Boolean = true,

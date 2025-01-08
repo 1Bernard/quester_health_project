@@ -36,7 +36,7 @@ import com.example.questerhealth.core.presentation.countrycodepicker.CCPUtils.Co
 
 @Composable
 internal fun CountryHeaderDialog(
-    title: String = "Select Country", onDismiss: () -> Unit
+    title: String = "Select your country", onDismiss: () -> Unit
 ) {
 
     Row(
@@ -49,7 +49,7 @@ internal fun CountryHeaderDialog(
         Text(
             text = title,
             fontSize = MaterialTheme.typography.headlineMedium.fontSize,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Start
         )
         Spacer(modifier = Modifier.weight(1f))
 
@@ -64,7 +64,7 @@ internal fun CountryHeaderDialog(
 
 @Composable
 internal fun CountryHeaderSheet(
-    title: String = "Select Country"
+    title: String = "Select your country"
 ) {
 
     Row(
@@ -92,7 +92,7 @@ internal fun CountrySearch(
     value: String,
     onValueChange: (String) -> Unit,
     textStyle: TextStyle = TextStyle(),
-    hint: String = "Search Country",
+    hint: String = "Search your country",
     showClearIcon: Boolean = true,
     requestFocus: Boolean = true,
     onFocusChanged: (FocusState) -> Unit = {}
@@ -127,7 +127,7 @@ internal fun CountrySearch(
             Text(text = hint)
         },
         leadingIcon = {
-            Icon(Icons.Outlined.Search, contentDescription = "Search")
+            Icon(Icons.Outlined.Search, contentDescription = "Search for a country")
         },
         trailingIcon = {
             if (showClearIcon && value.isNotEmpty()) {

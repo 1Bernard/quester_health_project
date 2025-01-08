@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -146,7 +147,7 @@ fun CountryCodePickerTextField(
             isError = !isNumberValid && number.isNotEmpty() && showError,
             visualTransformation = CCPTransformer(context, country.countryIso),
             enabled = enabled,
-            keyboardOptions = keyboardOptions,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             keyboardActions = keyboardActions,
             colors = colors
         )
