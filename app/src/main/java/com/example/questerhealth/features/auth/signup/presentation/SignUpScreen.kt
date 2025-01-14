@@ -112,8 +112,8 @@ fun SignUpScreen(
     LaunchedEffect(true) {
         viewModel.navigationEvent.collectLatest { event ->
             when (event) {
-                is SignUpViewModel.SignUpNavigationEvent.NavigateToHome -> {
-                    navController.navigate(Route.Home) {
+                is SignUpViewModel.SignUpNavigationEvent.NavigateToOtp -> {
+                    navController.navigate(Route.Otp) {
                         popUpTo(Route.SignUp) {
                             inclusive = true
 

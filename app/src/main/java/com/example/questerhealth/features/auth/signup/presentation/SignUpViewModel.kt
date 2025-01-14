@@ -157,46 +157,10 @@ class SignUpViewModel(
                 _state.value = currentState.copy(isLoading = true)
                 kotlinx.coroutines.delay(2000) // Simulate account creation process
                 _state.value = currentState.copy(isLoading = false, isAccountCreated = true)
-                _navigationEvent.emit(SignUpNavigationEvent.NavigateToHome)
+                _navigationEvent.emit(SignUpNavigationEvent.NavigateToOtp)
             }
         }
     }
-
-
-//    fun onCreateAccountClick() {
-//        val currentState = _state.value
-//        val nameError = if (currentState.name.isBlank()) "Name is required" else null
-//        val emailError = if (currentState.email.isBlank()) "Email is required" else null
-//        val phoneError =
-//            if (currentState.phoneNumber.isBlank()) "Phone number is required" else null
-//        val passwordError = if (currentState.password.isBlank()) "Password is required" else null
-//        val confirmPasswordError =
-//            if (currentState.confirmPassword != currentState.password) "Passwords do not match" else null
-//
-//        val isTermsAcceptedError =
-//            if (!currentState.isTermsAccepted) "Terms and conditions must be accepted" else null
-//
-//        _state.value = currentState.copy(
-//            nameError = nameError,
-//            emailError = emailError,
-//            phoneNumberError = phoneError,
-//            passwordError = passwordError,
-//            confirmPasswordError = confirmPasswordError,
-//            isTermsAcceptedError = isTermsAcceptedError
-//        )
-//
-//        if (nameError == null && emailError == null && phoneError == null && passwordError == null && confirmPasswordError == null && isTermsAcceptedError == null) {
-//            viewModelScope.launch {
-//                _state.value = currentState.copy(isLoading = true)
-//
-//                kotlinx.coroutines.delay(2000)
-//                _state.value = currentState.copy(isLoading = false, isAccountCreated = true)
-//                _navigationEvent.emit(SignUpNavigationEvent.NavigateToHome)
-//
-//            }
-//        }
-//    }
-
 
     fun onLoginClicked() {
         viewModelScope.launch {
@@ -206,7 +170,7 @@ class SignUpViewModel(
 
     sealed class SignUpNavigationEvent {
         data object NavigateToLogin : SignUpNavigationEvent()
-        data object NavigateToHome : SignUpNavigationEvent()
+        data object NavigateToOtp : SignUpNavigationEvent()
     }
 
 }

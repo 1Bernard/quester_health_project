@@ -8,13 +8,17 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.questerhealth.features.article.HomeScreen
 import com.example.questerhealth.features.auth.AuthScreen
 import com.example.questerhealth.features.auth.login.LoginScreen
+import com.example.questerhealth.features.auth.otp.presentation.OtpScreen
+import com.example.questerhealth.features.auth.otp.presentation.OtpState
 import com.example.questerhealth.features.auth.signup.presentation.SignUpScreen
 import com.example.questerhealth.features.onboard.presentation.OnBoardingViewModel
 import com.example.questerhealth.features.onboard.presentation.OnboardingScreen
@@ -71,6 +75,10 @@ fun NavGraph(
 
         composable<Route.SignUp> {
             SignUpScreen(navController = navController)
+        }
+
+        composable<Route.Otp> {
+            OtpScreen(navController = navController)
         }
 
         composable<Route.Login> {

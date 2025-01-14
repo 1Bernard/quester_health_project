@@ -7,6 +7,7 @@ import com.example.questerhealth.core.preferences.domain.manager.LocalUserManage
 import com.example.questerhealth.core.preferences.domain.usecases.AppEntryUseCases
 import com.example.questerhealth.core.preferences.domain.usecases.ReadAppEntry
 import com.example.questerhealth.core.preferences.domain.usecases.SaveAppEntry
+import com.example.questerhealth.features.auth.otp.presentation.OtpViewModel
 import com.example.questerhealth.features.auth.signup.presentation.SignUpViewModel
 import com.example.questerhealth.features.onboard.presentation.OnBoardingViewModel
 import org.koin.android.ext.koin.androidContext
@@ -34,6 +35,10 @@ val appModule = module {
 
     viewModel {
         SignUpViewModel(get())
+    }
+
+    viewModel {
+        OtpViewModel()
     }
 
 }
