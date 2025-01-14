@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -56,7 +57,7 @@ fun OnboardingGraphUI(onboardingModel: OnboardingModel) {
         Spacer(modifier = Modifier.height(30.dp))
         // Title
         Text(
-            text = onboardingModel.title,
+            text = stringResource(id = onboardingModel.title),
             fontSize = MaterialTheme.typography.headlineSmall.fontSize,
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.fillMaxWidth(),
@@ -65,7 +66,7 @@ fun OnboardingGraphUI(onboardingModel: OnboardingModel) {
         Spacer(modifier = Modifier.height(16.dp))
         // Description
         Text(
-            text = onboardingModel.desc,
+            text = stringResource(id = onboardingModel.desc),
             fontSize = MaterialTheme.typography.bodyMedium.fontSize,
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier

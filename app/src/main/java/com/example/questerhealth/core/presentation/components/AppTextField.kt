@@ -18,6 +18,8 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation.Companion.keyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalTextStyle
@@ -59,16 +61,16 @@ fun AppTextField(
     isPassword: Boolean = false,
     isNumeric: Boolean = false,
     isError: Boolean = false,
+    errorMessage: String? = null, // Optional error message
     textStyle: TextStyle = LocalTextStyle.current,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
-    singleLine: Boolean = false,
+    singleLine: Boolean = true,
     maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
     shape: Shape = RoundedCornerShape(10.dp),
     colors: TextFieldColors = OutlinedTextFieldDefaults.colors(
         focusedBorderColor = MaterialTheme.colorScheme.primary,
-//        unfocusedBorderColor = Color.LightGray.copy(alpha = 0.4f),
         unfocusedBorderColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.2f),
         errorBorderColor = MaterialTheme.colorScheme.error
     )
@@ -79,71 +81,78 @@ fun AppTextField(
     // State for password visibility
     val passwordVisible = remember { mutableStateOf(false) }
 
-    // Determine the appropriate visual transformation
     val effectiveVisualTransformation =
         if (isPassword && !passwordVisible.value) PasswordVisualTransformation() else visualTransformation
 
-    // Configure keyboard options
     val effectiveKeyboardOptions = when {
         isNumeric -> KeyboardOptions(keyboardType = KeyboardType.Number)
         else -> keyboardOptions
     }
 
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .onFocusChanged { focusState ->
-                isFocused.value = focusState.isFocused || value.isNotEmpty()
-            }
-    ) {
-        // Label
-        Text(
-            text = labelText,
-            style = textStyle.copy(
-                fontSize = if (isFocused.value) 12.sp else 14.sp,
-                color = if (isError) MaterialTheme.colorScheme.error else Color.Gray
-            ),
-            modifier = Modifier
-                .padding(start = 16.dp, end = 16.dp)
-                .offset(
-                    y = if (isFocused.value) (13).dp else (34).dp // Adjust for the label staying within bounds
-                )
-                .background(MaterialTheme.colorScheme.background) // Prevent overlap
-                .animateContentSize() // Smooth animation
-        )
-
-        // OutlinedTextField
-        OutlinedTextField(
-            value = value,
-            onValueChange = onValueChange,
+    Column(modifier = modifier.fillMaxWidth()) {
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp), // Ensure alignment with label
-            textStyle = textStyle.copy(fontWeight = FontWeight.Normal),
-            placeholder = placeholder?.let {
-                { Text(it, style = textStyle.copy(color = Color.Gray)) }
-            },
-            isError = isError,
-            visualTransformation = effectiveVisualTransformation,
-            keyboardOptions = effectiveKeyboardOptions,
-            keyboardActions = keyboardActions,
-            singleLine = singleLine,
-            maxLines = maxLines,
-            shape = shape,
-            colors = colors,
-            label = {}, // No default label, custom one is used
-            trailingIcon = if (isPassword) {
-                {
-                    IconButton(onClick = { passwordVisible.value = !passwordVisible.value }) {
-                        Image(
-                            painter = if (passwordVisible.value) painterResource(id = R.drawable.ic_eye) else painterResource(
-                                id = R.drawable.ic_eye
-                            ),
-                            contentDescription = if (passwordVisible.value) "Hide password" else "Show password"
-                        )
-                    }
+                .onFocusChanged { focusState ->
+                    isFocused.value = focusState.isFocused || value.isNotEmpty()
                 }
-            } else null
-        )
+        ) {
+            // Label
+            Text(
+                text = labelText,
+                style = textStyle.copy(
+                    fontSize = if (isFocused.value) 12.sp else 14.sp,
+                    color = if (isError) MaterialTheme.colorScheme.error else Color.Gray
+                ),
+                modifier = Modifier
+                    .padding(start = 16.dp, end = 16.dp)
+                    .offset(y = if (isFocused.value) (13).dp else (34).dp)
+                    .background(MaterialTheme.colorScheme.background)
+                    .animateContentSize()
+            )
+
+            // OutlinedTextField
+            OutlinedTextField(
+                value = value,
+                onValueChange = onValueChange,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp),
+                textStyle = textStyle.copy(fontWeight = FontWeight.Normal),
+                placeholder = placeholder?.let {
+                    { Text(it, style = textStyle.copy(color = Color.Gray)) }
+                },
+                isError = isError,
+                visualTransformation = effectiveVisualTransformation,
+                keyboardOptions = effectiveKeyboardOptions,
+                keyboardActions = keyboardActions,
+                singleLine = singleLine,
+                maxLines = maxLines,
+                shape = shape,
+                colors = colors,
+                label = {},
+                trailingIcon = if (isPassword) {
+                    {
+                        IconButton(onClick = { passwordVisible.value = !passwordVisible.value }) {
+                            Icon(
+                                imageVector = if (passwordVisible.value) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                                contentDescription = if (passwordVisible.value) "Hide password" else "Show password",
+                                tint = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f)
+                            )
+                        }
+                    }
+                } else null
+            )
+        }
+
+        // Display error message if present
+        if (isError && errorMessage != null) {
+            Text(
+                text = errorMessage,
+                color = MaterialTheme.colorScheme.error,
+                style =  MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+            )
+        }
     }
 }

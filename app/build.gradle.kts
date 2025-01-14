@@ -71,7 +71,9 @@ dependencies {
     //Navigation
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
-
+    //libphonenumber-android
     implementation(libs.libphonenumber.android)
+    //Compose Material Icons Extended
+    implementation (libs.androidx.material.icons.extended)
 
 }

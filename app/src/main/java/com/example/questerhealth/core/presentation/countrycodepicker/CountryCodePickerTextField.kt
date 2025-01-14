@@ -38,7 +38,7 @@ fun CountryCodePickerTextField(
     value: String? = null,
     modifier: Modifier = Modifier,
     number: String,
-    onValueChange: (countryCode: String, value: String, isValid: Boolean) -> Unit,
+    onValueChange: (value: String, isValid: Boolean) -> Unit,
     enabled: Boolean = true,
     textStyle: TextStyle = LocalTextStyle.current,
     labelText: String = "Phone number",
@@ -46,10 +46,11 @@ fun CountryCodePickerTextField(
     trailingIcon: @Composable (() -> Unit)? = null,
     showError: Boolean = true,
     isError: Boolean = false,
+    errorMessage: String? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     shape: Shape = RoundedCornerShape(10.dp),
-    selectedCountry: Country = Country.Bangladesh,
+    selectedCountry: Country = Country.Ghana,
     countryList: List<Country> = Country.getAllCountries(),
     viewCustomization: ViewCustomization = ViewCustomization(),
     pickerCustomization: PickerCustomization = PickerCustomization(),
@@ -115,7 +116,7 @@ fun CountryCodePickerTextField(
                 isNumberValid = validatePhoneNumber(
                     number = it, countryCode = country.countryCode
                 )
-                onValueChange(country.countryCode, it, isNumberValid)
+                onValueChange( it, isNumberValid)
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -133,7 +134,7 @@ fun CountryCodePickerTextField(
                         isNumberValid = validatePhoneNumber(
                             number = number, countryCode = it.countryCode
                         )
-                        onValueChange(it.countryCode, number, isNumberValid)
+                        onValueChange( number, isNumberValid)
                     },
                     viewCustomization = viewCustomization,
                     pickerCustomization = pickerCustomization,
@@ -152,19 +153,29 @@ fun CountryCodePickerTextField(
             colors = colors
         )
     }
-}
 
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-
-    var value by remember {
-        mutableStateOf("")
+    // Error Message
+    if (showError && isError && !errorMessage.isNullOrEmpty()) {
+        Text(
+            text = errorMessage,
+            color = MaterialTheme.colorScheme.error,
+            style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+        )
     }
-
-    CountryCodePickerTextField(onValueChange = { _, number, _ ->
-        value = number
-
-    }, number = value)
 }
+
+
+//@Preview(showBackground = true)
+//@Composable
+//fun DefaultPreview() {
+//
+//    var value by remember {
+//        mutableStateOf("")
+//    }
+//
+//    CountryCodePickerTextField(onValueChange = { _, number, _ ->
+//        value = number
+//
+//    }, number = value)
+//}

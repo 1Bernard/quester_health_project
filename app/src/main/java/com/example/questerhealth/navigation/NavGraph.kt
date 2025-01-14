@@ -12,7 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.questerhealth.features.article.HomeScreen
 import com.example.questerhealth.features.auth.AuthScreen
+import com.example.questerhealth.features.auth.login.LoginScreen
 import com.example.questerhealth.features.auth.signup.presentation.SignUpScreen
 import com.example.questerhealth.features.onboard.presentation.OnBoardingViewModel
 import com.example.questerhealth.features.onboard.presentation.OnboardingScreen
@@ -69,6 +71,14 @@ fun NavGraph(
 
         composable<Route.SignUp> {
             SignUpScreen(navController = navController)
+        }
+
+        composable<Route.Login> {
+            LoginScreen(navController = navController)
+        }
+
+        composable<Route.Home> {
+            HomeScreen(navController = navController)
         }
 
     }

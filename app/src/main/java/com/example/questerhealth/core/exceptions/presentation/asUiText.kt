@@ -3,6 +3,7 @@ package com.example.questerhealth.core.exceptions.presentation
 import com.example.questerhealth.R
 import com.example.questerhealth.core.exceptions.domain.DataError
 import com.example.questerhealth.core.exceptions.domain.Result
+import com.example.questerhealth.core.exceptions.domain.UserValidationError
 
 fun DataError.asUiText(): UiText {
     return when (this) {
@@ -41,6 +42,31 @@ fun DataError.asUiText(): UiText {
     }
 }
 
+fun UserValidationError.asUiText(): UiText {
+    return when (this) {
+        UserValidationError.Name.EMPTY -> UiText.StringResource(R.string.name_cannot_be_empty)
+        UserValidationError.Name.TOO_SHORT -> UiText.StringResource(R.string.name_too_short)
+        UserValidationError.Name.INVALID_CHARACTERS -> UiText.StringResource(R.string.name_invalid_characters)
+
+        UserValidationError.Email.EMPTY -> UiText.StringResource(R.string.email_cannot_be_empty)
+        UserValidationError.Email.INVALID_FORMAT -> UiText.StringResource(R.string.invalid_email_format)
+
+        UserValidationError.Phone.EMPTY -> UiText.StringResource(R.string.phone_cannot_be_empty)
+        UserValidationError.Phone.INVALID_FORMAT -> UiText.StringResource(R.string.invalid_phone_number)
+
+        UserValidationError.Password.TOO_SHORT -> UiText.StringResource(R.string.password_too_short)
+        UserValidationError.Password.NO_UPPERCASE -> UiText.StringResource(R.string.password_no_uppercase)
+        UserValidationError.Password.NO_DIGIT -> UiText.StringResource(R.string.password_no_digit)
+        UserValidationError.Password.NO_SPECIAL_CHARACTER -> UiText.StringResource(R.string.password_no_special_character)
+
+    }
+}
+
+
 fun Result.Error<*, DataError>.asErrorUiText(): UiText {
     return error.asUiText()
 }
+
+//fun Result.Error<*, UserValidationError>.asErrorUiText(): UiText {
+//    return error.asUiText()
+//}

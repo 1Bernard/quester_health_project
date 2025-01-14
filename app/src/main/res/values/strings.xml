@@ -15,4 +15,27 @@
     <string name="error_disk_full">Failed to save the item because your device\'s disk is full</string>
     <string name="error_serialization">Oops, couldn\'t parse data.</string>
     <string name="error_password_too_short">The password is too short</string>
+    <string name="terms_and_conditions">I agree to the <b>Terms and Conditions and Privacy Policy</b> using this app</string>
+    <string name="create_account">Create an account</string>
+    <string name="onboarding_title_one">Find a Doctor</string>
+    <string name="onboarding_desc_one">Find a doctor in the comfort of your home/office.</string>
+    <string name="onboarding_title_two">The Choice is Yours</string>
+    <string name="onboarding_desc_two">Contact a doctor via video call, voice call or chat.</string>
+    <string name="onboarding_title_three">Online Appointment Made Easier</string>
+    <string name="onboarding_desc_three">Book appointments with doctors at the comfort of your home.</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+    <string name="dont_have_account">Don\'t have an account? Signup</string>
+    <string name="name_cannot_be_empty">name cannot be empty</string>
+    <string name="name_too_short">name too short</string>
+    <string name="name_invalid_characters">invalid characters</string>
+    <string name="email_cannot_be_empty">email cannot be empty</string>
+    <string name="invalid_email_format">invalid email format</string>
+    <string name="phone_cannot_be_empty">phone number cannot be empty</string>
+    <string name="password_too_short">password too short</string>
+    <string name="invalid_phone_number">invalid phone number</string>
+    <string name="password_no_uppercase">no uppercase</string>
+    <string name="password_no_digit">no digit</string>
+    <string name="password_no_special_character">no special characters</string>
+    <string name="generic_validation_error">validation error</string>
 </resources>

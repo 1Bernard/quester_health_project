@@ -99,7 +99,7 @@ fun AuthScreen(navController: NavController) {
                     .padding(top = 8.dp, bottom = 12.dp)
                     .fillMaxWidth()
                     .clickable {
-
+                        navController.navigate(Route.Login)
                     },
                 textAlign = TextAlign.Center,
             )

@@ -140,7 +140,7 @@ fun ShowCountryCodePickerTextField() {
     var text by remember { mutableStateOf("") }
 
     var country by remember {
-        mutableStateOf(Country.Bangladesh)
+        mutableStateOf(Country.Ghana)
     }
 
     if (!LocalInspectionMode.current) {
@@ -152,30 +152,30 @@ fun ShowCountryCodePickerTextField() {
     }
 
 
-    CountryCodePickerTextField(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 8.dp),
-        enabled = true,
-        textStyle = MaterialTheme.typography.bodyMedium,
-        trailingIcon = {
-            IconButton(onClick = { text = "" }) {
-                Icon(
-                    imageVector = Icons.Default.Clear, contentDescription = "Clear"
-                )
-            }
-        },
-        showError = true,
-        shape = RoundedCornerShape(10.dp),
-        onValueChange = { _, value, _ ->
-            text = value
-        },
-        number = text,
-        showSheet = true,
-        selectedCountry = country
-
-
-    )
+//    CountryCodePickerTextField(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(top = 8.dp),
+//        enabled = true,
+//        textStyle = MaterialTheme.typography.bodyMedium,
+//        trailingIcon = {
+//            IconButton(onClick = { text = "" }) {
+//                Icon(
+//                    imageVector = Icons.Default.Clear, contentDescription = "Clear"
+//                )
+//            }
+//        },
+//        showError = true,
+//        shape = RoundedCornerShape(10.dp),
+//        onValueChange = { _, value, _ ->
+//            text = value
+//        },
+//        number = text,
+//        showSheet = true,
+//        selectedCountry = country
+//
+//
+//    )
 
 }
 
