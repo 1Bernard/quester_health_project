@@ -213,19 +213,25 @@ fun SignUpScreen(
                 errorMessage = state.phoneNumberError,
                 shape = RoundedCornerShape(10.dp),
                 onValueChange = { value, isValid ->
-                    // Combine the country code and phone number
-                    val fullPhoneNumber = "$value"
+                    // Update the local phone number state (excluding the country code)
+                    text = value
 
-                    // Update the local state with the full phone number
-                    text = fullPhoneNumber
+                    // Combine the country code with the phone number for ViewModel/state updates
+                    val fullPhoneNumber = "${country.countryCode}$value"
 
-                    // Notify your state management or view model
-                    onAction(SignUpAction.ChangePhoneNumber(fullPhoneNumber))
+                    // Notify the ViewModel or state management
+                    onAction(
+                        SignUpAction.ChangePhoneNumber(
+                            newPhoneNumber = fullPhoneNumber,
+                            countryIso = country.countryIso
+                        )
+                    )
                 },
-                number = text.removePrefix(country.countryCode), // Ensure text only contains the phone number part
+                number = text, // Display the phone number only, without country code
                 showSheet = true,
                 selectedCountry = country
             )
+
 
             AppTextField(
                 value = state.password,

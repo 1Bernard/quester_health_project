@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 
 class SignUpViewModel(
-    private val validator: UserDataValidator
+    private val validator: UserDataValidator,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(SignUpState())
@@ -38,7 +38,7 @@ class SignUpViewModel(
             }
 
             is SignUpAction.ChangePhoneNumber -> {
-                _state.value = _state.value.copy(phoneNumber = action.newPhoneNumber)
+                _state.value = _state.value.copy(phoneNumber = action.newPhoneNumber, countryIso = action.countryIso)
             }
 
             is SignUpAction.ChangePassword -> {
@@ -96,7 +96,7 @@ class SignUpViewModel(
         }
 
         // Validate phone number
-        when (val phoneNumberResult = validator.validatePhoneNumber(currentState.phoneNumber)) {
+        when (val phoneNumberResult = validator.validatePhoneNumber(currentState.phoneNumber, currentState.countryIso)) {
             is Result.Error -> {
                 hasErrors = true
                 _state.value = _state.value.copy(

@@ -4,6 +4,7 @@ data class SignUpState(
     val name: String = "",
     val email: String = "",
     val phoneNumber: String = "",
+    val countryIso: String = "",
     val password: String = "",
     val confirmPassword: String = "",
     val isTermsAccepted: Boolean = false,

@@ -10,6 +10,7 @@ import com.example.questerhealth.core.preferences.domain.usecases.SaveAppEntry
 import com.example.questerhealth.features.auth.otp.presentation.OtpViewModel
 import com.example.questerhealth.features.auth.signup.presentation.SignUpViewModel
 import com.example.questerhealth.features.onboard.presentation.OnBoardingViewModel
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -18,7 +19,8 @@ val appModule = module {
     single<LocalUserManager> { LocalUserManagerImpl(androidContext()) }
     single { AppEntryUseCases(readAppEntry = ReadAppEntry(get()), saveAppEntry = SaveAppEntry(get())) }
     // Provide UserDataValidator as a singleton
-    single { UserDataValidator() }
+//    single { UserDataValidator() }
+    single { UserDataValidator(androidContext()) }
 
     viewModel {
         OnBoardingViewModel(get())
@@ -26,15 +28,9 @@ val appModule = module {
     viewModel {
         MainViewModel(get()) // Ensure MainViewModel is available for injection
     }
-    viewModel {
-        SignUpViewModel(get()) // Ensure MainViewModel is available for injection
-    }
-    viewModel {
-        SignUpViewModel(get()) // Ensure MainViewModel is available for injection
-    }
 
     viewModel {
-        SignUpViewModel(get())
+        SignUpViewModel(get()) // Ensure MainViewModel is available for injection
     }
 
     viewModel {

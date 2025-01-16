@@ -1,6 +1,11 @@
 package com.example.questerhealth.core.exceptions.domain
 
-class UserDataValidator {
+import android.content.Context
+import android.util.Patterns
+import io.michaelrocks.libphonenumber.android.NumberParseException
+import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
+
+class UserDataValidator(private val context: Context) {
 
     fun validateName(name: String): Result<Unit, NameError> {
         return when {
@@ -12,22 +17,26 @@ class UserDataValidator {
     }
 
     fun validateEmail(email: String): Result<Unit, EmailError> {
-        val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$".toRegex()
         return when {
             email.isBlank() -> Result.Error(EmailError.EMPTY)
-            !email.matches(emailRegex) -> Result.Error(EmailError.INVALID_FORMAT)
+            !Patterns.EMAIL_ADDRESS.matcher(email)
+                .matches() -> Result.Error(EmailError.INVALID_FORMAT)
+
             else -> Result.Success(Unit)
         }
     }
 
-    fun validatePhoneNumber(phoneNumber: String): Result<Unit, PhoneNumberError> {
-        return when {
-            phoneNumber.isBlank() -> Result.Error(PhoneNumberError.EMPTY)
-            phoneNumber.length != 9 || !phoneNumber.all { it.isDigit() } -> Result.Error(
-                PhoneNumberError.INVALID_FORMAT
-            )
-
-            else -> Result.Success(Unit)
+    fun validatePhoneNumber(phoneNumber: String, countryIso: String): Result<Unit, PhoneNumberError> {
+        val phoneNumberUtil = PhoneNumberUtil.createInstance(context)
+        return try {
+            val parsedNumber = phoneNumberUtil.parse(phoneNumber, countryIso)
+            if (phoneNumberUtil.isValidNumber(parsedNumber)) {
+                Result.Success(Unit)
+            } else {
+                Result.Error(PhoneNumberError.INVALID_FORMAT)
+            }
+        } catch (e: NumberParseException) {
+            Result.Error(PhoneNumberError.INVALID_FORMAT)
         }
     }
 
