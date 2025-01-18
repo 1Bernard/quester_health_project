@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -20,14 +21,16 @@ import com.example.questerhealth.features.auth.login.LoginScreen
 import com.example.questerhealth.features.auth.otp.presentation.OtpScreen
 import com.example.questerhealth.features.auth.otp.presentation.OtpState
 import com.example.questerhealth.features.auth.signup.presentation.SignUpScreen
+import com.example.questerhealth.features.chat.ChatScreen
+import com.example.questerhealth.features.history.HistoryScreen
 import com.example.questerhealth.features.onboard.presentation.OnBoardingViewModel
 import com.example.questerhealth.features.onboard.presentation.OnboardingScreen
+import com.example.questerhealth.features.prescription.PrescriptionScreen
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun NavGraph(
     startDestination: Route,
-
 ) {
     val navController = rememberNavController()
 
@@ -85,8 +88,8 @@ fun NavGraph(
             LoginScreen(navController = navController)
         }
 
-        composable<Route.Home> {
-            HomeScreen(navController = navController)
+        composable<Route.MainNavigator> {
+            MainScreen()
         }
 
     }

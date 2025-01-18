@@ -134,7 +134,7 @@ fun LoginScreen(navController: NavController) {
                 ),
                 shape = MaterialTheme.shapes.extraSmall,
                 onClick = {
-                    navController.navigate(Route.Home)
+                    navController.navigate(Route.MainNavigator)
                 }
             ) {
                 Text(
